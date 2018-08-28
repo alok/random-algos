@@ -19,11 +19,8 @@ def gen_sym(V: int = 10) -> np.ndarray:
     G = np.random.randint(0, 1 + 1, size=(V, V))
     G += G.T
     G[G > 1] = 1
-    for i, _ in enumerate(G):
-        G[i][i] = 0
+    np.fill_diagonal(G,0)
     return G
-
-
 
 
 def gen_adj_list(G: AdjacencyMatrix) -> AdjacencyList:
@@ -35,7 +32,6 @@ def gen_adj_list(G: AdjacencyMatrix) -> AdjacencyList:
     return adj
 
 
-Edge = Tuple[Vertex, Vertex]  # of len = 2
 
 
 def select_edge(A: AdjacencyList) -> Edge:
