@@ -3,26 +3,15 @@
 
 import random
 from copy import deepcopy
-import typing
-from typing import (
-    Callable,
-    Dict,
-    FrozenSet,
-    Iterable,
-    List,
-    NamedTuple,
-    NewType,
-    Optional,
-    Set,
-    Tuple,
-    TypeVar,
-    Union,
-)
+from typing import Dict, List, Tuple
 
 import numpy as np
 
 
 AdjacencyMatrix = np.ndarray
+Vertex = int
+Edge = Tuple[Vertex, Vertex]  # of len = 2
+AdjacencyList = Dict[Vertex, List[Vertex]]
 
 
 # TODO generate symmetric matrix properly
@@ -35,8 +24,6 @@ def gen_sym(V: int = 10) -> np.ndarray:
     return G
 
 
-Vertex = int
-AdjacencyList = Dict[Vertex, Set[Vertex]]
 
 
 def gen_adj_list(G: AdjacencyMatrix) -> AdjacencyList:
