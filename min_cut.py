@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""An implementation of Karger's algorithm."""
 
 import random
 from copy import deepcopy
