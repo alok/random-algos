@@ -45,6 +45,8 @@ def select_edge(A: AdjacencyList) -> Edge:
 
 def contract_edge(edge: Edge, A: AdjacencyList) -> None:
     # add w's connections to v
+def replace_value(xs: List, value, replacement):
+    return [replacement if x == value else x for x in xs]
 
     # # rm w from all connections
     # for vertex in A:
@@ -68,11 +70,9 @@ def contract_edge(edge: Edge, A: AdjacencyList) -> None:
 
     del A[w]
 
-    #
-    for vertex in A:
-        for i, u in enumerate(A[vertex]):
-            if u == w:
-                A[vertex][i] = v
+    # We don't use a dict comprehension since we want to mutate A in-place
+    for vertex, neighbors in A.items():
+        A[vertex] = replace_value(neighbors, w, v)
 
 
 def test_single(A: AdjacencyList, num_iters: int = 10) -> int:
