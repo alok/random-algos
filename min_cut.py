@@ -14,13 +14,12 @@ Edge = Tuple[Vertex, Vertex]  # of len = 2
 AdjacencyList = Dict[Vertex, List[Vertex]]
 
 
-# TODO generate symmetric matrix properly
 def gen_sym(V: int = 10) -> np.ndarray:
-    G = np.random.randint(0, 1 + 1, size=(V, V))
-    G += G.T
-    G[G > 1] = 1
-    np.fill_diagonal(G,0)
-    return G
+    G = np.triu(np.random.randint(0, 1 + 1, size=(V, V)))
+    sym = G + G.T
+    # rm self-edges
+    np.fill_diagonal(sym, 0)
+    return sym
 
 
 def gen_adj_list(G: AdjacencyMatrix) -> AdjacencyList:
