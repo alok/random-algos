@@ -23,12 +23,8 @@ def gen_sym(V: int = 10) -> np.ndarray:
 
 
 def gen_adj_list(G: AdjacencyMatrix) -> AdjacencyList:
-    adj = {i: [] for i, _ in enumerate(G)}
-    for v, row in enumerate(G):
-        for c, vertex in enumerate(row):
-            if row[c] == 1:
-                adj[v].append(c)
-    return adj
+    # {v : vertices that have a 1 in the adjacency matrix}
+    return {v: list(np.argwhere(vertices).reshape(-1)) for v, vertices in enumerate(G)}
 
 
 def gen_all_edges(A: AdjacencyList) -> List[Edge]:
