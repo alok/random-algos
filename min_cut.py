@@ -43,19 +43,11 @@ def select_edge(A: AdjacencyList) -> Edge:
     return random.choice(gen_all_edges(A))
 
 
-def contract_edge(edge: Edge, A: AdjacencyList) -> None:
-    # add w's connections to v
 def replace_value(xs: List, value, replacement):
     return [replacement if x == value else x for x in xs]
 
-    # # rm w from all connections
-    # for vertex in A:
-    #     while w in A[vertex]:
-    #         A[vertex].remove(w)
 
-    # # A[v].extend([u for u in A[w] if u != v])
-    # A[v].extend([u for u in A[w] if u != v])
-    # del A[w]
+def contract_edge(edge: Edge, A: AdjacencyList) -> None:
 
     v, w = edge
 
