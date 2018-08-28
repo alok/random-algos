@@ -39,8 +39,7 @@ def gen_all_edges(A: AdjacencyList) -> List[Edge]:
 
 
 def select_edge(A: AdjacencyList) -> Edge:
-    all_edges = gen_all_edges(A)
-    return random.choice(all_edges)
+    return random.choice(gen_all_edges(A))
 
 
 def contract_edge(edge: Edge, A: AdjacencyList) -> None:
