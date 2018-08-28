@@ -60,10 +60,8 @@ def replace_value(xs: List, value, replacement):
     v, w = edge
 
     # rm *all* edges between v and w
-    while w in A[v]:
-        A[v].remove(w)
-    while v in A[w]:
-        A[w].remove(v)
+    A[v] = [vertex for vertex in A[v] if vertex != w]
+    A[w] = [vertex for vertex in A[w] if vertex != v]
 
     # No self edges to worry about by assumption/construction above.
     A[v].extend(A[w])
