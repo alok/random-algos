@@ -71,12 +71,17 @@ def contract_edge(edge: Edge, A: AdjacencyList) -> None:
                 A[vertex][i] = v
 
 
+def test_single(A: AdjacencyList, num_iters: int = 10) -> int:
+    return min(min_cut_len(deepcopy(A)) for _ in range(num_iters))
 
 
-    return A
+def min_cut_len(A: AdjacencyList) -> int:
+    while len(A) > 2:
+        contract_edge(select_edge(A), A)
+
+    return len(list(A.values())[0])
+
 
 if __name__ == "__main__":
     G = gen_sym(V=10)
     A = gen_adj_list(G)
-    contract_edge(select_edge(A), A)
-
