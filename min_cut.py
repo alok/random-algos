@@ -32,11 +32,20 @@ def gen_adj_list(G: AdjacencyMatrix) -> AdjacencyList:
     return adj
 
 
+def gen_all_edges(A: AdjacencyList) -> List[Edge]:
+
+    # avoid adding both (v,w) and (w,v)
+    edges = []
+    for v in A:
+        for i in A[v]:
+            if (i, v) not in edges:
+                edges.append((v, i))
+    return edges
 
 
 def select_edge(A: AdjacencyList) -> Edge:
-    edges = [(v, i) for v in A for i in A[v]]
-    return random.choice(edges)
+    all_edges = gen_all_edges(A)
+    return random.choice(all_edges)
 
 
 def contract_edge(edge: Edge, A: AdjacencyList) -> None:
