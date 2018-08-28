@@ -75,7 +75,8 @@ def min_cut_len(A: AdjacencyList) -> int:
     while len(A) > 2:
         contract_edge(select_edge(A), A)
 
-    return len(list(A.values())[0])
+    # Any value will do since every value has the same length.
+    return len(next(v for v in A.values()))
 
 
 if __name__ == "__main__":
