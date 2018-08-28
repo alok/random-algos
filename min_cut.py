@@ -55,9 +55,11 @@ def contract_edge(edge: Edge, A: AdjacencyList) -> None:
     A[v] = [vertex for vertex in A[v] if vertex != w]
     A[w] = [vertex for vertex in A[w] if vertex != v]
 
-    # No self edges to worry about by assumption/construction above.
+    # Add w's edges to v. No self edges to worry about by
+    # assumption/construction above.
     A[v].extend(A[w])
 
+    # rm w since it's collapsed into v
     del A[w]
 
     # We don't use a dict comprehension since we want to mutate A in-place
